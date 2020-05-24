@@ -2,49 +2,6 @@ import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 
-// let news = require('./data.json');
-/* ========== ВАРИАНТ 1 ========== */
-// let news;
-// async function getNewsAsync(name) 
-// {
-//   let response = await fetch(`http://localhost:80/${name}`);
-//   let data = await response.json()
-//   return data;
-// }
-// getNewsAsync('read')
-//   .then((data) => {
-//     let news = data;
-//   });
-/* ========== ВАРИАНТ 2 ========== */
-// async function getNewsData() {
-//   let news;
-//   try {
-//     await fetch('http://localhost:80/read', {
-//       method: 'POST'
-//     })
-//       .then((res) => {
-//         return res.json();
-//       })
-//       .then((data) => {
-//         news = data;
-//         return news;
-//       });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-/* ========== ВАРИАНТ 3 ========== */
-// fetch('http://localhost:80/read', {
-//   method: 'post'
-// })
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((data) => {
-//     // console.log(data);
-//     news = data;
-//     console.log(news);
-//   });
 class Article extends React.Component {
   constructor() {
     super();
@@ -103,9 +60,9 @@ class News extends React.Component {
   }
 }
 
-News.propTypes = {
-  data: PropTypes.array.isRequired
-}
+// News.propTypes = {
+//   data: PropTypes.array.isRequired
+// }
 Article.propTypes = {
   data: PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -133,7 +90,6 @@ class App extends React.Component {
         var news;
         news = data;
         this.setState({ newsAll: news });
-        console.log(news);
       });
   }
   render() {

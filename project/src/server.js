@@ -14,16 +14,22 @@ var staticPath = path.join(__dirname, '/');
 app.use(express.static(staticPath));
 
 app.post('/add-news', (req, res) => {
-  // console.log(JSON.parse(req.body));
-  // тестирую получение данных без []
-  // fs.readFile('./test.json', 'utf-8', (err, jsonString) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log(jsonString);
-  //   }
-  // });
-  // console.log('add-news');
+  console.log(JSON.parse(req.body));
+  const data = fs.readFileSync('./test.json', 'utf-8');
+   let newData;
+   if (data === '') {
+     newData = req.body;
+   } else {
+     newData = data + ', \n' + req.body;
+   }
+   fs.writeFile('./test.json', newData, function(err) {
+     if (err) {
+       return console.log(err);
+     } else {
+     res.send(true);
+     console.log('Данные сохранены');
+     }
+   });
 });
 app.post('/read', (req, res) => {
   fs.readFile('./test.json', 'utf-8', (err, jsonString) => {
