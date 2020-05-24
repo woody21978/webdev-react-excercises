@@ -45,7 +45,6 @@ import PropTypes from 'prop-types';
 //     news = data;
 //     console.log(news);
 //   });
-// let news = [];
 class Article extends React.Component {
   constructor() {
     super();
@@ -77,17 +76,22 @@ class News extends React.Component {
   render() {
     let data = this.props.data;
     let template;
-
-    if (data.length > 0) {
-      template = data.map(function (item, index) {
-        return (
-          <div key={index} className="card">
-            <Article data={item} />
-          </div>
-        );
-      })
-    } else {
-      template = <p>Новостей нет :(</p>
+    if (data) {
+      if (data instanceof Array) {
+        if (data.length > 0) {
+          template = data.map(function (item, index) {
+            return (
+              <div key={index} className="card">
+                <Article data={item} />
+              </div>
+            );
+          })
+        } else {
+          template = <p>Новостей нет :(</p>
+        }
+      } else {
+        template = <h3>Загружаю Новости...</h3>
+      }
     }
 
     return (
@@ -114,7 +118,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      newsAll: []
+      newsAll: ''
     };
   }
   componentDidMount() {
