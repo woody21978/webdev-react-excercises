@@ -2,9 +2,32 @@ import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 
-let news = require('./data.json');
-// let news = [];
-// fetch('http://localhost:80/read')
+// let news = require('./data.json');
+let news;
+// const getData = async function (url) {
+//   const response = await fetch(url);
+
+//   if (!response.ok) {
+//     throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response.status}`);
+//   }
+
+//   return await response.json();
+// }
+// getData('http://localhost:80/read').then(function (data) {
+//   news = data;
+// });
+fetch('http://localhost:80/read', {
+  method: 'post',
+  // mode: 'no-cors',
+})
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    // console.log(data);
+    news = data;
+    console.log(news);
+  });
 
 class Article extends React.Component {
   constructor() {

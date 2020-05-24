@@ -2,28 +2,39 @@ var path = require('path');
 var express = require('express');
 var fs = require('fs');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 var app = express();
-// app.use(cors());
+
+
+app.use(cors());
 app.use(bodyParser.text());
 app.use(bodyParser.json());
-
+ 
 var staticPath = path.join(__dirname, '/');
 app.use(express.static(staticPath));
 
 app.post('/add-news', (req, res) => {
-  console.log(JSON.parse(req.body));
+  // console.log(JSON.parse(req.body));
   // тестирую получение данных без []
-  fs.readFile('./test.json','utf-8', (err, jsonString) => {
+  // fs.readFile('./test.json', 'utf-8', (err, jsonString) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log(jsonString);
+  //   }
+  // });
+  // console.log('add-news');
+});
+app.get('/read', (req, res) => {
+  fs.readFile('./test.json', 'utf-8', (err, jsonString) => {
     if (err) {
       console.log(err);
     } else {
       console.log(jsonString);
+      // res.json(jsonString);
+      res.send('['+jsonString+']');
     }
   });
-});
-app.post('/read', (req, res) => {
-
 });
 
 // Allows you to set port in the project properties.

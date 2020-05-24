@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
-import * as fs from 'fs';
-// import fs from 'fs';
-// import './main.js';
 
-// const fs = require('fs');
+const getData = async function (url) {
+  const response = await fetch(url);
+
+  // if (!response.ok) {
+  //   throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response.status}`);
+  // }
+  console.log(await response.json());
+  return await response.json();
+}
+
 
 class Admin extends React.Component {
   constructor(props) {
@@ -55,11 +61,9 @@ class Admin extends React.Component {
       author: author,
       text: text
     };
-    // fs.writeFile('./data.json', JSON.stringify(data), err => {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    // });
+    getData('http://localhost:80/test.js').then(function (data) {
+      console.log(data);
+    });
     fetch('http://localhost:80/add-news', {
       headers: {
         Accept: 'application/json',
@@ -79,7 +83,6 @@ class Admin extends React.Component {
       .catch(function (res) {
         console.log(res);
       });
-    console.log(data);
   }
   render() {
     return (
