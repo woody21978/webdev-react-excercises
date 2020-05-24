@@ -3,32 +3,49 @@ import './App.css';
 import PropTypes from 'prop-types';
 
 // let news = require('./data.json');
-let news;
-// const getData = async function (url) {
-//   const response = await fetch(url);
-
-//   if (!response.ok) {
-//     throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response.status}`);
-//   }
-
-//   return await response.json();
+/* ========== ВАРИАНТ 1 ========== */
+// let news;
+// async function getNewsAsync(name) 
+// {
+//   let response = await fetch(`http://localhost:80/${name}`);
+//   let data = await response.json()
+//   return data;
 // }
-// getData('http://localhost:80/read').then(function (data) {
-//   news = data;
-// });
-fetch('http://localhost:80/read', {
-  method: 'post',
-  // mode: 'no-cors',
-})
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    // console.log(data);
-    news = data;
-    console.log(news);
-  });
-
+// getNewsAsync('read')
+//   .then((data) => {
+//     let news = data;
+//   });
+/* ========== ВАРИАНТ 2 ========== */
+// async function getNewsData() {
+//   let news;
+//   try {
+//     await fetch('http://localhost:80/read', {
+//       method: 'POST'
+//     })
+//       .then((res) => {
+//         return res.json();
+//       })
+//       .then((data) => {
+//         news = data;
+//         return news;
+//       });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
+/* ========== ВАРИАНТ 3 ========== */
+// fetch('http://localhost:80/read', {
+//   method: 'post'
+// })
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     // console.log(data);
+//     news = data;
+//     console.log(news);
+//   });
+// let news = [];
 class Article extends React.Component {
   constructor() {
     super();
@@ -97,12 +114,27 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      newsAll: news
+      newsAll: []
     };
+  }
+  componentDidMount() {
+    fetch('http://localhost:80/read', {
+      method: 'post'
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        var news;
+        news = data;
+        this.setState({ newsAll: news });
+        console.log(news);
+      });
   }
   render() {
     return (
-      <div className="container">
+      <div className="container" >
         <h1 className="title">Новости</h1>
         <News data={this.state.newsAll} />
       </div>

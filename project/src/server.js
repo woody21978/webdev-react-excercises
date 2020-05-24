@@ -25,14 +25,14 @@ app.post('/add-news', (req, res) => {
   // });
   // console.log('add-news');
 });
-app.get('/read', (req, res) => {
+app.post('/read', (req, res) => {
   fs.readFile('./test.json', 'utf-8', (err, jsonString) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(jsonString);
       // res.json(jsonString);
       res.send('['+jsonString+']');
+      console.log('Ответ отправлен');
     }
   });
 });
