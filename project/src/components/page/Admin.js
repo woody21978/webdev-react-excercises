@@ -8,7 +8,7 @@ class Admin extends React.Component {
     super(props);
     this.updateAuthorValue = this.updateAuthorValue.bind(this);
     this.updateTextValue = this.updateTextValue.bind(this);
-    this.BtnClick = this.BtnClick.bind(this);
+    this.handleBtnClick = this.handleBtnClick.bind(this);
   }
   updateAuthorValue(e) {
     state.admin.inputAuthor = e.target.value;
@@ -26,7 +26,7 @@ class Admin extends React.Component {
       state.admin.textIsEmpty = true;
     }
   }
-  BtnClick(e) {
+  handleBtnClick(e) {
     e.preventDefault();
     const author = state.admin.inputAuthor.trim();
     const text = state.admin.inputText.trim();
@@ -76,7 +76,7 @@ class Admin extends React.Component {
           <input type="text" className="add__author" value={state.admin.inputAuthor} onChange={this.updateAuthorValue} />
           <label>Новость:</label>
           <textarea className="add__text" value={state.admin.inputText} onChange={this.updateTextValue} placeholder="Не менее 70 символов"></textarea>
-          <button className="add__btn" onClick={this.BtnClick} disabled={state.admin.authorIsEmpty || state.admin.textIsEmpty}>Опубликовать</button>
+          <button className="add__btn" onClick={this.handleBtnClick} disabled={state.admin.authorIsEmpty || state.admin.textIsEmpty}>Опубликовать</button>
         </form>
       </div>
     );
