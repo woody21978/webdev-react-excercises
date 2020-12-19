@@ -1,0 +1,17 @@
+.form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  width: 100%;
+  background: rgb(245, 245, 245);
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 20px 35px;
+
+  &__title {
+    font-size: 20px;
+    text-align: center;
+  }
+}
