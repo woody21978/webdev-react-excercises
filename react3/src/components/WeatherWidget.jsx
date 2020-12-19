@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
+import '../index.css';
 
 class WeatherWidget extends React.Component {
   render() {
     const { type, city, deg, dir } = this.props;
-
     const weather = 'weather__icon ' + type;
     const style = {
       transform: 'rotate(' + dir + 'deg)',
