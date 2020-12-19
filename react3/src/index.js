@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import WeatherWidget from './components/WeatherWidget';
 
 ReactDOM.render(
   <div className="container">
     <div className="cards">
       <React.StrictMode>
-        <App
+        <WeatherWidget
           city={'Los-Angeles'}
           deg={17}
           dir={230}
@@ -16,7 +15,7 @@ ReactDOM.render(
           wet={80}
           type={'sunny'}
         />
-        <App
+        <WeatherWidget
           city={'New York'}
           deg={12}
           dir={300}
@@ -24,7 +23,7 @@ ReactDOM.render(
           wet={50}
           type={'cloudy'}
         />
-        <App
+        <WeatherWidget
           city={'Йошкар-Ола'}
           deg={12}
           dir={390}
@@ -37,8 +36,3 @@ ReactDOM.render(
   </div>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
